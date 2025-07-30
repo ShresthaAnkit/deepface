@@ -43,7 +43,7 @@ COPY ./entrypoint.sh /app/deepface/api/src/entrypoint.sh
 # RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org deepface
 # -----------------------------------
 # install dependencies - deepface with these dependency versions is working
-RUN pip install uv --system
+RUN pip install uv
 RUN uv pip install --no-reinstall  -r /app/requirements_local.txt --system
 # install deepface from source code (always up-to-date)
 RUN uv pip install --no-reinstall -e . --system
