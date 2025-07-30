@@ -11,5 +11,4 @@ mtcnn
 retina-face
 fire
 gunicorn
-tf-keras
 numpy==1.26.4
