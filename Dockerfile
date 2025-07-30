@@ -1,13 +1,11 @@
 # base image
-FROM python:3.8.12
+FROM tensorflow/tensorflow:latest-gpu
 LABEL org.opencontainers.image.source https://github.com/serengil/deepface
 
 # -----------------------------------
 # create required folder
 RUN mkdir -p /app && chown -R 1001:0 /app
 RUN mkdir /app/deepface
-
-
 
 # -----------------------------------
 # switch to application directory
@@ -45,9 +43,9 @@ COPY ./entrypoint.sh /app/deepface/api/src/entrypoint.sh
 # RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org deepface
 # -----------------------------------
 # install dependencies - deepface with these dependency versions is working
-RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org -r /app/requirements_local.txt
+RUN pip install --ignore-installed --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org -r /app/requirements_local.txt
 # install deepface from source code (always up-to-date)
-RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org -e .
+RUN pip install --ignore-installed --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org -e .
 
 # -----------------------------------
 # some packages are optional in deepface. activate if your task depends on one.

@@ -14,5 +14,9 @@ def create_app():
     app = Flask(__name__)
     CORS(app)
     app.register_blueprint(blueprint)
-    logger.info(f"Welcome to DeepFace API v{DeepFace.__version__}!")
+    logger.info("All registered routes:")
+    for rule in app.url_map.iter_rules():
+        logger.info(f"  {rule.rule} -> {rule.endpoint} [{', '.join(rule.methods)}]")
+
+    logger.info(f"Welcome to DeepFace API test v{DeepFace.__version__}!")
     return app

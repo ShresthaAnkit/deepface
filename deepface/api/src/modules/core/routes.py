@@ -71,7 +71,7 @@ def extract_image_from_request(img_key: str) -> Union[str, np.ndarray]:
 
 
 @blueprint.route("/represent", methods=["POST"])
-def represent():
+def represent():    
     input_args = (request.is_json and request.get_json()) or (
         request.form and request.form.to_dict()
     )
