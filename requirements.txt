@@ -12,3 +12,4 @@ retina-face
 fire
 gunicorn
 numpy==1.26.4
+tensorflow[and-cuda]==2.15.0
