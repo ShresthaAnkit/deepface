@@ -1,15 +1,12 @@
 # tensorflow[and-cuda]
 requests
-pandas
 gdown
 tqdm
-Pillow
-opencv-python
 Flask
 flask-cors
 mtcnn
 retina-face
 fire
 gunicorn
+tf-keras
 numpy==1.26.4
-tensorflow==2.15.0
