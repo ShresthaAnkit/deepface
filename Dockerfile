@@ -1,5 +1,5 @@
 # base image
-FROM tensorflow/tensorflow:2.15.0-gpu
+FROM tensorflow/tensorflow:2.19.0-gpu
 LABEL org.opencontainers.image.source https://github.com/serengil/deepface
 
 # -----------------------------------
