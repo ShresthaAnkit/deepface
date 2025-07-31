@@ -21,16 +21,12 @@ RUN apt-get update && apt-get install -y \
     libhdf5-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# -----------------------------------
-# Copy required files from repo into image
-COPY ./deepface /app/deepface
 # even though we will use local requirements, this one is required to perform install deepface from source code
 COPY ./requirements.txt /app/requirements.txt
 COPY ./requirements_local /app/requirements_local.txt
 COPY ./package_info.json /app/
 COPY ./setup.py /app/
-COPY ./README.md /app/
-COPY ./entrypoint.sh /app/deepface/api/src/entrypoint.sh
+
 
 # -----------------------------------
 # if you plan to use a GPU, you should install the 'tensorflow-gpu' package
@@ -45,9 +41,16 @@ COPY ./entrypoint.sh /app/deepface/api/src/entrypoint.sh
 # install dependencies - deepface with these dependency versions is working
 RUN pip install uv
 RUN uv pip install --no-reinstall  -r /app/requirements_local.txt --system
+
+# -----------------------------------
+# Copy required files from repo into image
+COPY ./deepface /app/deepface
+COPY ./README.md /app/
+COPY ./entrypoint.sh /app/deepface/api/src/entrypoint.sh
+
 # install deepface from source code (always up-to-date)
 RUN uv pip install --no-reinstall -e . --system
-RUN uv pip install tensorflow==2.15.0 tf-keras==2.15.0 --force-reinstall --system
+# RUN uv pip install tensorflow==2.15.0 tf-keras==2.15.0 --force-reinstall --system
 # -----------------------------------
 # some packages are optional in deepface. activate if your task depends on one.
 # RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org cmake==3.24.1.1
