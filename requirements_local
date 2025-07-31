@@ -1,4 +1,4 @@
 pandas
 Pillow
 opencv-python
-tf-keras
+tf-keras==2.19.0
