@@ -1,5 +1,5 @@
 # base image
-FROM tensorflow/tensorflow:2.19.0-gpu
+FROM tensorflow/tensorflow:2.15.0-gpu
 LABEL org.opencontainers.image.source https://github.com/serengil/deepface
 
 # -----------------------------------
@@ -50,8 +50,7 @@ COPY ./entrypoint.sh /app/deepface/api/src/entrypoint.sh
 
 # install deepface from source code (always up-to-date)
 RUN uv pip install --no-reinstall -e . --system
-# RUN uv pip install tf-keras --system
-# RUN uv pip install tensorflow==2.19.0 tf-keras==2.19.0 --force-reinstall --system
+RUN uv pip install tensorflow==2.15.0 tf-keras==2.15.0 --force-reinstall --system
 # -----------------------------------
 # some packages are optional in deepface. activate if your task depends on one.
 # RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org cmake==3.24.1.1
