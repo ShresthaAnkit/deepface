@@ -1,6 +1,5 @@
 import os
 # Don't set CUDA_VISIBLE_DEVICES yet
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 import tensorflow as tf
 
 print("=== TensorFlow GPU Status ===")
