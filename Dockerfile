@@ -46,8 +46,8 @@ COPY ./entrypoint.sh /app/deepface/api/src/entrypoint.sh
 RUN pip install uv
 RUN uv pip install --no-reinstall  -r /app/requirements_local.txt --system
 # install deepface from source code (always up-to-date)
-# RUN uv pip install --no-reinstall -e . --system
-
+RUN uv pip install --no-reinstall -e . --system
+RUN uv pip install tensorflow==2.15.0 tf-keras==2.15.0 --force-reinstall --system
 # -----------------------------------
 # some packages are optional in deepface. activate if your task depends on one.
 # RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org cmake==3.24.1.1
@@ -62,5 +62,5 @@ ENV PYTHONUNBUFFERED=1
 # run the app (re-configure port if necessary)
 WORKDIR /app/deepface/api/src
 EXPOSE 5000
-# CMD ["gunicorn", "--workers=1", "--timeout=3600", "--bind=0.0.0.0:5000", "app:create_app()"]
+CMD ["gunicorn", "--workers=1", "--timeout=3600", "--bind=0.0.0.0:5000", "app:create_app()"]
 # ENTRYPOINT [ "sh", "entrypoint.sh" ]
