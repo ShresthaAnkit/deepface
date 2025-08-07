@@ -61,6 +61,8 @@ RUN uv pip install tensorflow==2.15.0 tf-keras==2.15.0 --force-reinstall --syste
 # environment variables
 ENV PYTHONUNBUFFERED=1
 
+# Download required models
+RUN python -c "from deepface import DeepFace; DeepFace.build_model('ArcFace')"
 # -----------------------------------
 # run the app (re-configure port if necessary)
 WORKDIR /app/deepface/api/src
