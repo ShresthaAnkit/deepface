@@ -64,8 +64,6 @@ ENV PYTHONUNBUFFERED=1
 # Download required models
 RUN python -c "from deepface import DeepFace; DeepFace.build_model('ArcFace')"
 
-ENV CUDA_VISIBLE_DEVICES=""
-ENV TF_CPP_MIN_LOG_LEVEL=2
 # -----------------------------------
 # run the app (re-configure port if necessary)
 WORKDIR /app/deepface/api/src
