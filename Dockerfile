@@ -1,5 +1,5 @@
 # base image
-FROM tensorflow/tensorflow:2.15.0-gpu
+FROM nvidia/cuda:12.1-runtime-ubuntu22.04
 LABEL org.opencontainers.image.source https://github.com/serengil/deepface
 
 # -----------------------------------
