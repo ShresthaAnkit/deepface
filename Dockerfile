@@ -68,5 +68,5 @@ RUN python -c "from deepface import DeepFace; DeepFace.build_model('ArcFace')"
 # run the app (re-configure port if necessary)
 WORKDIR /app/deepface/api/src
 EXPOSE 5000
-CMD ["gunicorn", "--workers=1", "--threads=4", "--worker-class=gthread", "--timeout=3600", "--bind=0.0.0.0:5000", "app:create_app()"]
+CMD ["gunicorn", "--workers=4", "--threads=1", "--worker-class=gthread", "--timeout=3600", "--bind=0.0.0.0:5000", "app:create_app()"]
 # ENTRYPOINT [ "sh", "entrypoint.sh" ]
